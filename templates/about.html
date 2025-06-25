@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us - Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --success-color: #27ae60;
+        --light-bg: #f8f9fa;
+        --dark-text: #2c3e50;
+        --medium-text: #6c757d;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark-text);
+      }
+
+      .hero-section {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,0v100h1000V0H0z M100,50c50,0,50-50,100-50s50,50,100,50s50-50,100-50s50,50,100,50s50-50,100-50s50,50,100,50s50-50,100-50s50,50,100,50s50-50,100-50s50,50,100,50"/></svg>') repeat-x;
+        animation: wave 20s linear infinite;
+      }
+
+      @keyframes wave {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100px); }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .section-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        border-radius: 2px;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(52, 152, 219, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--secondary-color), var(--success-color));
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 25px;
+        background: linear-gradient(135deg, var(--secondary-color), var(--success-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stats-section {
+        background: var(--light-bg);
+        padding: 80px 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 30px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .stat-item:hover {
+        transform: scale(1.05);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+      }
+
+      .team-section {
+        padding: 80px 0;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--secondary-color);
+      }
+
+      .team-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--secondary-color), var(--success-color));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 3rem;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #c0392b 100%);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+      }
+
+      .btn-custom {
+        background: linear-gradient(135deg, var(--secondary-color), var(--success-color));
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+        color: white;
+      }
+
+      .navbar {
+        background: rgba(44, 62, 80, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 60px 0;
+        }
+
+        .section-header h2 {
+          font-size: 2rem;
+        }
+
+        .feature-card {
+          margin-bottom: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <i class="fas fa-heartbeat me-2" style="color: #e74c3c;"></i>
+          Health Care Center
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-content">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-4 fade-in">Revolutionizing Healthcare with AI</h1>
+            <p class="lead mb-4 fade-in">Empowering individuals with intelligent health insights and personalized medical guidance through cutting-edge artificial intelligence.</p>
+            <a href="/" class="btn-custom fade-in">Try Our AI Diagnosis</a>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="fade-in">
+              <i class="fas fa-robot" style="font-size: 8rem; opacity: 0.3;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-item fade-in">
+              <div class="stat-number" data-count="10000">0</div>
+              <p class="mb-0">Users Helped</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-item fade-in">
+              <div class="stat-number" data-count="95">0</div>
+              <p class="mb-0">% Accuracy Rate</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-item fade-in">
+              <div class="stat-number" data-count="150">0</div>
+              <p class="mb-0">Diseases Covered</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-item fade-in">
+              <div class="stat-number" data-count="24">0</div>
+              <p class="mb-0">Hours Available</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="py-5">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>About Our Mission</h2>
+          <p class="lead text-muted">Bridging the gap between technology and healthcare for better health outcomes</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h4 class="mb-3">Our Vision</h4>
+              <p>We envision a world where healthcare information is accessible to everyone, breaking down barriers between patients and medical knowledge. Our platform democratizes health insights, making expert-level diagnostic assistance available at your fingertips, anytime, anywhere.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4 class="mb-3">Who We Are</h4>
+              <p>We're a diverse team of medical professionals, AI researchers, and healthcare innovators united by a shared passion for improving global health outcomes. Our multidisciplinary expertise combines decades of clinical experience with cutting-edge machine learning technologies.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <h4 class="mb-3">Our Mission</h4>
+              <p>To provide accurate, accessible, and actionable health insights through AI-powered symptom analysis. We're committed to supporting early detection, health education, and informed decision-making while emphasizing the importance of professional medical consultation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <h4 class="mb-3">How Our Technology Works</h4>
+              <p>Our advanced machine learning algorithms are trained on extensive medical datasets, incorporating symptom patterns, disease correlations, and clinical guidelines. The system uses natural language processing to understand your symptoms and applies ensemble learning methods to provide accurate diagnostic suggestions with confidence scores.</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4 class="mb-3">Your Privacy & Safety</h4>
+              <p>We prioritize your privacy and data security above all else. All symptom data is processed securely, and we never store personal health information. Our recommendations are educational tools designed to complement, not replace, professional medical advice and diagnosis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section bg-light">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Our Expert Team</h2>
+          <p class="lead text-muted">Dedicated professionals working tirelessly to advance healthcare accessibility</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="team-card fade-in">
+              <div class="team-avatar">
+                <i class="fas fa-user-md"></i>
+              </div>
+              <h5>Medical Experts</h5>
+              <p class="text-muted">Board-certified physicians and specialists ensuring clinical accuracy</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="team-card fade-in">
+              <div class="team-avatar">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h5>AI Researchers</h5>
+              <p class="text-muted">Leading experts in machine learning and healthcare AI applications</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="team-card fade-in">
+              <div class="team-avatar">
+                <i class="fas fa-code"></i>
+              </div>
+              <h5>Tech Engineers</h5>
+              <p class="text-muted">Full-stack developers creating seamless, secure healthcare experiences</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="team-card fade-in">
+              <div class="team-avatar">
+                <i class="fas fa-heart"></i>
+              </div>
+              <h5>Health Advocates</h5>
+              <p class="text-muted">Patient care specialists focused on improving healthcare accessibility</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container text-center">
+        <div class="fade-in">
+          <h2 class="display-5 fw-bold mb-4">Ready to Take Control of Your Health?</h2>
+          <p class="lead mb-4">Join thousands of users who trust our AI-powered health insights for better healthcare decisions.</p>
+          <a href="/" class="btn-custom me-3">Start Your Health Assessment</a>
+          <a href="/contact" class="btn btn-outline-light btn-lg">Contact Our Team</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <script>
+      // Fade in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Counter animation
+      function animateCounter(element) {
+        const target = parseInt(element.getAttribute('data-count'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            element.textContent = target + (element.parentElement.textContent.includes('%') ? '' : '');
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current);
+          }
+        }, 16);
+      }
+
+      // Trigger counter animation when stats section is visible
+      const statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+              if (!counter.classList.contains('animated')) {
+                counter.classList.add('animated');
+                animateCounter(counter);
+              }
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+
+      const statsSection = document.querySelector('.stats-section');
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+
+      // Initial fade-in for hero content
+      window.addEventListener('load', function() {
+        document.querySelectorAll('.hero-content .fade-in').forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, index * 200);
+        });
+      });
+    </script>
+  </body>
+</html>

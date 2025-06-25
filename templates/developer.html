@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aryadeep Varshney – AI & ML Engineer Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+            background: #f9fafe;
+            min-height: 100vh;
+            position: relative;
+            color: #23262e;
+            box-sizing: border-box;
+        }
+        /* Animated Blobs - Light background */
+        .bg-blobs {
+            pointer-events: none;
+            z-index: 0;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(42px);
+            opacity: 0.45;
+            animation: blobMove 22s infinite;
+            will-change: transform;
+        }
+        .blob1 {
+            width: 480px; height: 480px;
+            background: radial-gradient(circle at 25% 30%, #8ac8ff 0%, #b6fff4 85%);
+            left: -110px; top: -120px;
+            animation-delay: 0s;
+        }
+        .blob2 {
+            width: 390px; height: 390px;
+            background: radial-gradient(circle at 70% 10%, #f7b4ff 0%, #fffbe4 85%);
+            right: -140px; top: 200px;
+            animation-delay: 10s;
+        }
+        .blob3 {
+            width: 330px; height: 330px;
+            background: radial-gradient(circle at 50% 70%, #fffacc 0%, #e7fdff 100%);
+            left: 20vw; bottom: -120px;
+            animation-delay: 6s;
+        }
+        @keyframes blobMove {
+            0%,100% { transform: scale(1) translate(0, 0);}
+            25% { transform: scale(1.15) translate(50px, 40px);}
+            50% { transform: scale(0.94) translate(-40px, 50px);}
+            75% { transform: scale(1.11) translate(30px, -25px);}
+        }
+        /* Hero/Profile Header */
+        .hero {
+            background: rgba(255,255,255,0.82);
+            box-shadow: 0 0px 34px 0 rgba(140, 190, 255, 0.10);
+            color: #23262e;
+            border-radius: 1.2rem;
+            backdrop-filter: blur(2px);
+            padding: 2.7rem 1.5rem;
+            text-align: center;
+            margin-bottom: 2.1rem;
+            border: 1.5px solid rgba(100, 184, 227, 0.09);
+            position: relative;
+            z-index: 1;
+        }
+        .hero img {
+            width: 125px;
+            height: 125px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin-bottom: 1.3rem;
+            box-shadow: 0 2px 18px 0 #71c7ff44;
+            background: #e9f6fd;
+        }
+        /* Section Titles */
+        .section-title {
+            border-left: 5px solid #6c8afd;
+            padding-left: 14px;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+            font-weight: 700;
+            color: #46adad;
+            letter-spacing: .5px;
+            text-shadow: 0 1px 6px rgba(180,200,255,0.07);
+        }
+        /* Timeline Style */
+        .timeline {
+            border-left: 3px solid #6c8afd;
+            margin-left: 1.8rem;
+            padding-left: 1.2rem;
+        }
+        .timeline .item {
+            margin-bottom: 1.3rem;
+            position: relative;
+        }
+        .timeline .item::before {
+            content: '';
+            position: absolute;
+            left: -1.7em;
+            top: .18em;
+            width: 1em; height: 1em;
+            background: #8ac8ff;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 6px #6c8afd44;
+        }
+        /* Project Card Style */
+        .project-card {
+            background: #fff;
+            border: 1.7px solid #dbecff;
+            border-radius: .89rem;
+            box-shadow: 0 3px 24px 0 #e8f8ff33;
+            color: #23262e;
+            transition: transform .12s cubic-bezier(.64,1.55,.53,.93), box-shadow .17s;
+        }
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.037) rotateX(2deg);
+            box-shadow: 0 7px 32px 0 #8fb9ff66, 0 1.5px 24px 0 #91f3ff22;
+            border-color: #46adad;
+            z-index: 3;
+        }
+        .project-card ul { color: #23262e; }
+        /* Skills Badge */
+        .badge-skill {
+            background: linear-gradient(90deg, #6c8afd 30%, #46adad 80%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05em;
+            border: none;
+            margin: 3px 8px 8px 3px;
+            display: inline-block;
+            letter-spacing: .04em;
+            box-shadow: 0 2px 8px #bddbff3b;
+            transition: background 0.4s, color 0.2s, transform .14s;
+        }
+        .badge-skill:hover {
+            background: linear-gradient(90deg, #ffd654 40%, #b68cff 100%);
+            color: #34334d;
+            transform: scale(1.09);
+        }
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: .95rem;
+            background: #fff;
+            color: #23262e;
+            box-shadow: 0 2px 16px 0 rgba(143, 185, 225, 0.10);
+        }
+        .card-body { z-index: 2; position: relative;}
+        li { margin-bottom: 0.5rem; }
+        .accent { color: #46adad; font-weight: bold; }
+        /* Socials */
+        .social-links a {
+            color: #61a4fe;
+            background: #e9f6fd;
+            margin: 0 8px;
+            border-radius: 0.8rem;
+            padding: 3px 7px;
+            font-size: 1.44rem;
+            opacity: 0.93;
+            transition: opacity 0.15s, color 0.18s, background 0.18s, transform 0.18s;
+            filter: drop-shadow(0 0 4px #dae4fd);
+        }
+        .social-links a:hover {
+            opacity: 1; color: #fff; background: #7ed9e8;
+            transform: scale(1.13);
+        }
+        .achievement-list li {
+            font-size: 1.07rem;
+        }
+        /* CTA Button */
+        .btn-primary {
+            background: linear-gradient(87deg,#6c8afd 23%,#46adad 100%);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            padding-left: 2em; padding-right: 2em;
+            transition: background 0.2s, box-shadow 0.3s;
+            box-shadow: 0 3px 14px #c1f4fe3a;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: linear-gradient(110deg,#ffd654 30%,#b68cff 100%);
+            color: #23262e;
+            box-shadow: 0 6px 24px #6c8afd26;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .bg-blobs .blob { filter: blur(54px);}
+            .blob1, .blob2, .blob3 { width: 200px !important; height: 200px !important; }
+        }
+        @media (max-width: 570px) {
+            .timeline { margin-left: 7px; padding-left: 12px;}
+            .section-title { font-size: 1.15rem;}
+            .hero img { width: 90px; height: 90px;}
+        }
+        ::selection { background: #ffd654; color: #23262e; }
+    </style>
+</head>
+<body>
+<!-- Animated background -->
+<div class="bg-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+</div>
+<div class="container py-4 px-2 px-md-0 position-relative" style="z-index:2;">
+    <!-- HERO section -->
+    <div class="hero mb-4 shadow-sm">
+        <img src="static/ss.png" alt="Aryadeep">
+        <h1 class="display-5 mb-2">Aryadeep Varshney</h1>
+        <h5 class="mb-3">Aspiring AI Engineer </h5>
+        <p class="lead mb-2 mx-auto" style="max-width:600px;">
+            Passionate about harnessing technology to solve real-world problems and build impactful, user-centric AI applications.
+        </p>
+        <div class="social-links mb-2">
+            <a href="https://github.com/aryadeep02" title="GitHub" >
+  <i class="bi bi-github"></i>
+</a>
+<a href="https://www.linkedin.com/in/aryadeep21" title="LinkedIn" >
+  <i class="bi bi-linkedin"></i>
+</a>
+            <a href="mailto:aryadeepv21@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- About Me -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="section-title">Meet the Developer</div>
+            <p>Hi, I'm Aryadeep Varshney, an aspiring AI Engineer with 6+ months of hands-on experience. I'm driven by the potential of technology to make life better, and I design solutions that are not just innovative, but genuinely helpful for users.</p>
+            <p>With a strong academic foundation in computer science and a deep passion for AI/ML, I have successfully delivered impactful projects across diverse domains—consistently striving for technical excellence, innovation, and real-world applicability.</p>
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section-title">Education</div>
+    <div class="timeline mb-3">
+        <div class="item">
+            <h6>Pranveer Singh Institute of Technology, Kanpur</h6>
+            <div>Bachelor of Technology, Computer Science<br><small class="text-muted">2022 – 2026 &nbsp; | &nbsp; CGPA: <b>7.5</b></small></div>
+        </div>
+        <div class="item">
+            <h6>St Joseph’s Sr Sec School, Kanpur</h6>
+            <small class="text-muted">2019 – 2021 &nbsp; | &nbsp; 10th: 84% &nbsp; | &nbsp; 12th: 82%</small>
+        </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="section-title">Professional Experience</div>
+    <div class="card mb-2 shadow-sm">
+        <div class="card-body">
+            <h6>AI Model Trainer <span class="accent">@ Outlier.ai</span>
+                <small class="text-muted" style="font-weight:400;">(Present)</small>
+            </h6>
+            <ul>
+                <li>Refined <b>100+</b> AI prompts, improving LLM output quality by <b>90%</b></li>
+                <li>Conducted output evaluations – clarity, creativity, and correctness</li>
+                <li>Provided training feedback to enhance model generalization</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section-title">Selected Projects</div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-2">
+        <div class="col">
+            <div class="card project-card h-100">
+                <div class="card-body">
+                    <h6 class="card-title">Medicine Recommendation System</h6>
+                    <div class="mb-2 text-muted" style="font-size:.98em;">Python, Flask, Machine Learning</div>
+                    <ul>
+                        <li>AI web app predicting diseases from symptoms & suggesting medicines</li>
+                        <li>SVM, Random Forest, Gradient Boosting – 100% accuracy (clean data)</li>
+                        <li>Outputs dietary recommendations & personalized precautions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card project-card h-100">
+                <div class="card-body">
+                    <h6 class="card-title">Email Spam Classifier</h6>
+                    <div class="mb-2 text-muted" style="font-size:.98em;">Python, Flask, NLP</div>
+                    <ul>
+                        <li>Real-time email spam filtering with interactive user interface</li>
+                        <li>TF-IDF + Naive Bayes / SVM pipeline</li>
+                        <li>Fast prediction, Flask-deployed web UI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card project-card h-100">
+                <div class="card-body">
+                    <h6 class="card-title">ViewTube (YouTube Clone)</h6>
+                    <div class="mb-2 text-muted" style="font-size:.98em;">React.js, RapidAPI</div>
+                    <ul>
+                        <li>Scalable video streaming & content discovery web app</li>
+                        <li>Integrates YouTube data; 1,000+ engaged users</li>
+                        <li>Personalized feeds, efficient content filter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section-title">Skills</div>
+    <div class="mb-3">
+        <span class="badge badge-skill">Python</span>
+        <span class="badge badge-skill">Java</span>
+        <span class="badge badge-skill">HTML</span>
+        <span class="badge badge-skill">CSS</span>
+        <span class="badge badge-skill">JavaScript</span>
+        <span class="badge badge-skill">SQL</span>
+        <span class="badge badge-skill">React.js</span>
+        <span class="badge badge-skill">Flask</span>
+        <span class="badge badge-skill">Scikit-learn</span>
+        <span class="badge badge-skill">Bootstrap</span>
+        <span class="badge badge-skill">Tailwind CSS</span>
+        <span class="badge badge-skill">MongoDB</span>
+        <span class="badge badge-skill">MySQL</span>
+        <span class="badge badge-skill">Git/GitHub</span>
+        <span class="badge badge-skill">VS Code</span>
+        <span class="badge badge-skill">DSA</span>
+        <span class="badge badge-skill">OOPS</span>
+        <span class="badge badge-skill">DBMS</span>
+        <span class="badge badge-skill">CN</span>
+        <span class="badge badge-skill">Software Engineering</span>
+    </div>
+    <!-- Certifications -->
+    <div class="section-title">Certifications</div>
+    <ul>
+        <li>Google AI Essentials – Coursera</li>
+        <li>Probability & Statistics for ML – DeepLearning.AI</li>
+        <li>DSA in Java – CodeChef</li>
+        <li>Problem Solving – HackerRank</li>
+    </ul>
+    <!-- Achievements -->
+    <div class="section-title">Achievements & Leadership</div>
+    <ul class="achievement-list">
+        <li>Solved <b>300+</b> LeetCode problems & 5★ on HackerRank (Python & Java)</li>
+        <li>Qualified Flipkart Grid 5.0 (Round 1) – national product engineering contest</li>
+        <li>Tech Co-Head, Ignitia 2025 – led 15+ peers in coding & tech events</li>
+        <li>School zonal-level cricket & athletics representative</li>
+    </ul>
+    <!-- Call to Action -->
+    <div class="card mt-4 mb-3 text-center p-4 shadow-sm">
+        <h4 class="mb-1 accent">Let’s Build the Future of AI Together!</h4>
+        <p>
+            Ready to collaborate or want to know more?<br>
+            <a href="mailto:aryadeepv21@gmail.com" class="btn btn-primary mt-2"><i class="bi bi-envelope me-1"></i>Contact Me</a>
+        </p>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

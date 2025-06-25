@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us | Aryadeep Varshney</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f7fbff;
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+            position: relative;
+        }
+        /* Animated 3D Blobs Background */
+        .bg-blobs {
+            pointer-events: none;
+            z-index: 0;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.40;
+            filter: blur(44px);
+            will-change: transform;
+            animation: floatBlob 24s infinite;
+        }
+        .blob1 {
+            width: 530px; height: 530px;
+            background: radial-gradient(circle at 35% 35%, #A1C4FD 0%, #C2E9FB 70%);
+            left: -100px; top: -120px;
+            animation-delay: 0s;
+        }
+        .blob2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle at 70% 25%, #FEE4CB 0%, #ffd6f6 80%);
+            right: -150px; top: 340px;
+            animation-delay: 7s;
+        }
+        .blob3 {
+            width: 320px; height: 320px;
+            background: radial-gradient(circle at 80% 70%, #B9F8D3 0%, #c1e3ff 80%);
+            left: 30vw; bottom: -120px;
+            animation-delay: 12s;
+        }
+        @keyframes floatBlob {
+            0%,100% { transform: scale(1) translateY(0);}
+            15% { transform: scale(1.08) translateY(22px) translateX(12px);}
+            30% { transform: scale(0.97) translateY(-25px) translateX(-8px);}
+            45% { transform: scale(1.04) translateY(29px) translateX(-16px);}
+            60% { transform: scale(1.1) translateY(-10px) translateX(20px);}
+            80% { transform: scale(1.05) translateY(18px) translateX(9px);}
+        }
+        /* Contact Card Styles */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 54px 0 #89befc22;
+            padding: 2rem 2.3rem;
+            margin-top: 3.2rem;
+            margin-bottom: 2.6rem;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(3px);
+        }
+        .contact-card:hover {
+            box-shadow: 0 12px 76px #8dd6fa40, 0 0.5px 10px #a8d8fe22;
+            transform: translateY(-5px) scale(1.01);
+        }
+        .icon-round {
+            background: #ecf4fe;
+            color: #61a4cf;
+            border-radius: 50%;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 48px;
+            font-size: 1.65rem;
+            text-align: center;
+            margin-right: 10px;
+            box-shadow: 0 1px 7px #d1ebff44;
+        }
+        .section-title {
+            color: #2273d6;
+            font-weight: 700;
+            border-left: 4px solid #b0e6fb;
+            padding-left: 12px;
+            margin-bottom: 18px;
+            font-size: 1.17rem;
+            margin-top: .8rem;
+        }
+        .social-btns a {
+            margin: 0 8px 0 0;
+            font-size: 1.34rem;
+            color: #fff;
+            background: linear-gradient(120deg,#7cb8f9 13%, #84fad2 100%);
+            border-radius: 50%;
+            width: 41px;
+            height: 41px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.26s, transform .18s;
+            box-shadow: 0 2px 14px #acddee30;
+        }
+        .social-btns a:hover {
+            background: linear-gradient(120deg, #409be6 27%, #f2b7e1 100%);
+            transform: scale(1.085);
+            box-shadow: 0 8px 26px #7bc5f440;
+        }
+        .location-card {
+            background: #e9f4ff;
+            border-color: #b0e6fb;
+            box-shadow: 0 2px 18px #deeafc33;
+            color: #36668d;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 4px #7cc8f780;
+            border-color: #60aaff;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #89befc 29%, #7ae4df 120%);
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: #155270;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(100deg, #66eaca 17%, #a1c4fd 80% );
+            color: #115c95;
+        }
+        @media (max-width: 700px) {
+            .bg-blobs .blob { filter: blur(70px);}
+            .blob1, .blob2, .blob3 { width: 210px !important; height: 210px !important; }
+            .contact-card { padding: 1.1rem 0.6rem; }
+        }
+        @media (max-width: 576px) {
+            .section-title { font-size: 1.03rem; }
+            .icon-round { width: 38px; height: 38px; font-size: 1.1rem;}
+        }
+        ::selection { background: #b0e6fb; color: #084b7e;}
+    </style>
+</head>
+<body>
+<!-- 3D Animated Light Blobs Background -->
+<div class="bg-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+</div>
+<div class="container position-relative" style="z-index:2;">
+    <div class="contact-card mx-auto" style="max-width: 830px;">
+        <div class="text-center mb-2">
+            <span class="icon-round mb-1"><i class="bi bi-envelope-paper"></i></span>
+            <h2 class="fw-bold mb-1" style="color:#2273d6;">Contact Us</h2>
+            <p class="mb-4" style="color:#5584a9;">Have questions or need assistance? We're here to help!</p>
+        </div>
+        <div class="row gy-4 align-items-center">
+            <!-- Contact Info + Socials -->
+            <div class="col-lg-6 contact-info">
+                <div class="section-title">Customer Support</div>
+                <p class="mb-2 text-muted">
+                    Our dedicated support team is ready to assist you with any inquiries, feedback, or issues.
+                </p>
+                <div class="mb-3">
+                    <p>
+                        <i class="bi bi-envelope-at-fill text-primary me-2"></i>
+                        <b>Email:</b>
+                        <a href="mailto:aryadeepvarshney85@gmail.com" class="text-decoration-none" style="color:#2273d6">aryadeepvarshney85@gmail.com</a>
+                    </p>
+                    <p>
+                        <i class="bi bi-telephone-fill text-primary me-2"></i>
+                        <b>Phone:</b>
+                        <a href="tel:+916392853068" class="text-decoration-none" style="color:#2273d6">+91-6392853068</a>
+                    </p>
+                </div>
+                <div class="section-title">Stay Connected</div>
+                <p class="mb-1 text-muted">Follow us for updates and tips:</p>
+                <div class="social-btns mb-2">
+                    <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="mailto:aryadeepvarshney85@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="section-title">Send Us a Message</div>
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="3" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-send me-1"></i>Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Location section -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="location-card rounded-3 p-3 mt-4">
+                    <div class="section-title mb-1">Location</div>
+                    <p class="mb-0"><i class="bi bi-geo-alt-fill text-danger me-2"></i>Uttar Pradesh, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

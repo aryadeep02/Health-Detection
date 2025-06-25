@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Health Care Center - Your Personal Health Assistant</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        --danger-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        --info-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --blur-bg: rgba(255, 255, 255, 0.05);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Glassmorphism Navbar */
+      .navbar {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: white !important;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+
+      .logo {
+        width: 55px;
+        height: 55px;
+        margin-right: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .myimg {
+        width: 100%;
+        height: 100%;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .myimg:hover {
+        transform: rotate(360deg) scale(1.1);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        margin: 0 10px;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background: linear-gradient(90deg, #f093fb, #f5576c);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link:hover {
+        color: white !important;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero-title {
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 3.5rem;
+        font-weight: 800;
+        text-align: center;
+        margin: 40px 0;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
+        100% { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)); }
+      }
+
+      .hero-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.3rem;
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      /* Glassmorphism Form Container */
+      .form-container {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        padding: 50px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        margin: 30px auto;
+        max-width: 700px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        z-index: -1;
+      }
+
+      .form-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-label {
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        color: white;
+        font-size: 1.1rem;
+        padding: 15px 20px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.5);
+        color: white;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        transform: scale(1.02);
+      }
+
+      .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        font-style: italic;
+      }
+
+      /* Enhanced Buttons */
+      .btn-enhanced {
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-enhanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.6s ease;
+      }
+
+      .btn-enhanced:hover::before {
+        left: 100%;
+      }
+
+      .btn-enhanced:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn-speech {
+        background: var(--info-gradient);
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .btn-speech.recording {
+        background: var(--danger-gradient);
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      }
+
+      .btn-search {
+        background: var(--danger-gradient);
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 18px;
+      }
+
+      /* Results Section */
+      .results-section {
+        margin-top: 60px;
+        text-align: center;
+      }
+
+      .results-title {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .result-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 0 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .result-btn {
+        padding: 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: none;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        min-height: 120px;
+        justify-content: center;
+      }
+
+      .result-btn i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .result-btn:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn-disease { background: var(--warning-gradient); }
+      .btn-description { background: var(--primary-gradient); }
+      .btn-precautions { background: var(--info-gradient); }
+      .btn-medications { background: var(--danger-gradient); }
+      .btn-workouts { background: var(--success-gradient); }
+      .btn-diets { background: var(--secondary-gradient); }
+
+      /* Enhanced Modals */
+      .modal-content {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .modal-header {
+        background: var(--dark-gradient) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 25px;
+      }
+
+      .modal-title {
+        font-weight: 700;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .modal-body {
+        padding: 30px;
+        color: white;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        background: var(--blur-bg);
+      }
+
+      .modal-body ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .modal-body li {
+        background: rgba(255, 255, 255, 0.1);
+        margin: 10px 0;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-left: 4px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .modal-body li:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(10px);
+      }
+
+      .modal-body li::before {
+        content: '✓';
+        color: #4facfe;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      /* Alert Styling */
+      .alert-danger {
+        background: var(--glass-bg);
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        color: white;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        margin: 20px 0;
+      }
+
+      .alert-success {
+        background: rgba(67, 233, 123, 0.1);
+        border: 1px solid rgba(67, 233, 123, 0.3);
+        color: white;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        margin: 20px 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .form-container {
+          padding: 30px 20px;
+          margin: 20px 10px;
+        }
+
+        .result-container {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 15px;
+        }
+
+        .navbar-brand {
+          font-size: 1.2rem;
+        }
+      }
+
+      /* Loading Animation */
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+            /* Floating particles animation */
+      .floating-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+      .particle:nth-child(2) { width: 120px; height: 120px; left: 20%; animation-delay: 2s; }
+      .particle:nth-child(3) { width: 60px; height: 60px; left: 60%; animation-delay: 4s; }
+      .particle:nth-child(4) { width: 100px; height: 100px; left: 80%; animation-delay: 1s; }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        10%, 90% { opacity: 1; }
+        50% { transform: translateY(-100px) rotate(180deg); }
+      }
+
+      /* Voice Recording Indicator */
+      .voice-indicator {
+        display: none;
+        color: white;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .voice-indicator.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Particles -->
+    <div class="floating-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Enhanced Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <div class="logo">
+            <img class="myimg" src="{{ url_for('static', filename='image.png') }}" alt="Health Center Logo">
+          </div>
+          <i class="fas fa-heartbeat me-2"></i>
+          AI Health Center
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="/"><i class="fas fa-home me-1"></i>Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about"><i class="fas fa-info-circle me-1"></i>About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/developer"><i class="fas fa-code me-1"></i>Developer</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container-fluid">
+      <h1 class="hero-title">
+        <i class="fas fa-robot me-3"></i>
+        AI Health Assistant
+      </h1>
+      <p class="hero-subtitle">
+        <i class="fas fa-stethoscope me-2"></i>
+        Describe your symptoms and get instant AI-powered health recommendations
+      </p>
+    </div>
+
+    <!-- Enhanced Form -->
+    <div class="container">
+      <div class="form-container">
+        <form action="{{ url_for('index') }}" method="POST" autocomplete="off">
+          <div class="form-group">
+            <label for="symptoms" class="form-label">
+              <i class="fas fa-comment-medical"></i>
+              Tell us about your symptoms
+            </label>
+            <input type="text" class="form-control" id="symptoms" name="symptoms"
+                   placeholder="e.g., headache, fever, nausea, fatigue, cough..." required>
+          </div>
+
+          <button type="button" id="startSpeechRecognition" class="btn btn-enhanced btn-speech">
+            <i class="fas fa-microphone"></i>
+            <span class="btn-text">Start Voice Input</span>
+          </button>
+
+          <div class="voice-indicator" id="voiceIndicator">
+            <i class="fas fa-circle-notch fa-spin me-2"></i>
+            <span id="voiceStatus">Listening...</span>
+          </div>
+
+          {% if message %}
+            <div class="alert alert-danger" role="alert">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              {{ message }}
+            </div>
+          {% endif %}
+
+          <button type="submit" class="btn btn-enhanced btn-search">
+            <i class="fas fa-search me-2"></i>
+            Get AI Health Analysis
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {% if predicted_disease %}
+    <div class="results-section">
+      <h2 class="results-title">
+        <i class="fas fa-chart-line me-3"></i>
+        Your Personalized Health Report
+      </h2>
+      <div class="container">
+        <div class="result-container">
+          <button class="result-btn btn-disease" data-bs-toggle="modal" data-bs-target="#diseaseModal">
+            <i class="fas fa-diagnoses"></i>
+            <span>Predicted Condition</span>
+          </button>
+          <button class="result-btn btn-description" data-bs-toggle="modal" data-bs-target="#descriptionModal">
+            <i class="fas fa-info-circle"></i>
+            <span>Detailed Description</span>
+          </button>
+          <button class="result-btn btn-precautions" data-bs-toggle="modal" data-bs-target="#precautionModal">
+            <i class="fas fa-shield-alt"></i>
+            <span>Safety Precautions</span>
+          </button>
+          <button class="result-btn btn-medications" data-bs-toggle="modal" data-bs-target="#medicationsModal">
+            <i class="fas fa-pills"></i>
+            <span>Medications</span>
+          </button>
+          <button class="result-btn btn-workouts" data-bs-toggle="modal" data-bs-target="#workoutsModal">
+            <i class="fas fa-dumbbell"></i>
+            <span>Exercise Plan</span>
+          </button>
+          <button class="result-btn btn-diets" data-bs-toggle="modal" data-bs-target="#dietsModal">
+            <i class="fas fa-utensils"></i>
+            <span>Diet Recommendations</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Enhanced Modals -->
+    <!-- Disease Modal -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="diseaseModalLabel">
+              <i class="fas fa-diagnoses"></i>
+              Predicted Health Condition
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-3">
+              <i class="fas fa-heartbeat" style="font-size: 3rem; color: #f093fb;"></i>
+            </div>
+            <h4 class="text-center mb-4">{{ predicted_disease or "No condition predicted" }}</h4>
+            <p class="text-muted text-center">
+              <i class="fas fa-info-circle me-2"></i>
+              This is an AI-generated prediction. Please consult a healthcare professional for proper diagnosis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="descriptionModalLabel">
+              <i class="fas fa-file-medical-alt"></i>
+              Detailed Medical Description
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-4">
+              <i class="fas fa-book-medical" style="font-size: 3rem; color: #667eea;"></i>
+            </div>
+            <p>{{ dis_des or "No description available" }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Precautions Modal -->
+    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="precautionModalLabel">
+              <i class="fas fa-shield-alt"></i>
+              Important Safety Precautions
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-4">
+              <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #43e97b;"></i>
+            </div>
+            {% if my_precautions %}
+              <ul>
+                {% for item in my_precautions %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-center text-muted">No specific precautions available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medications Modal -->
+    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="medicationsModalLabel">
+              <i class="fas fa-pills"></i>
+              Recommended Medications
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-4">
+              <i class="fas fa-prescription-bottle-alt" style="font-size: 3rem; color: #fa709a;"></i>
+            </div>
+            <div class="alert alert-warning">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              <strong>Important:</strong> Always consult with a healthcare provider before taking any medication.
+            </div>
+            {% if medications %}
+              <ul>
+                {% for item in medications %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-center text-muted">No medication recommendations available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workouts Modal -->
+    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="workoutsModalLabel">
+              <i class="fas fa-dumbbell"></i>
+              Recommended Exercise Plan
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-4">
+              <i class="fas fa-running" style="font-size: 3rem; color: #4facfe;"></i>
+            </div>
+            {% if workout %}
+              <ul>
+                {% for item in workout %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-center text-muted">No specific workout recommendations available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diets Modal -->
+    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="dietsModalLabel">
+              <i class="fas fa-utensils"></i>
+              Personalized Diet Plan
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-4">
+              <i class="fas fa-apple-alt" style="font-size: 3rem; color: #f093fb;"></i>
+            </div>
+            {% if my_diet %}
+              <ul>
+                {% for item in my_diet %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-center text-muted">No specific diet recommendations available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Enhanced Speech Recognition Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('startSpeechRecognition');
+        const inputField = document.getElementById('symptoms');
+        const buttonText = button.querySelector('.btn-text');
+        const buttonIcon = button.querySelector('i');
+        const voiceIndicator = document.getElementById('voiceIndicator');
+                const voiceStatus = document.getElementById('voiceStatus');
+        let isRecording = false;
+
+        if (button && inputField) {
+          button.addEventListener('click', function() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+              showNotification("🎤 Speech recognition is not supported in this browser. Please try Chrome or Edge.", 'error');
+              return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 1;
+
+            if (!isRecording) {
+              // Start recording
+              isRecording = true;
+              button.classList.add('recording');
+              buttonText.textContent = 'Stop Recording';
+              buttonIcon.classList.remove('fa-microphone');
+              buttonIcon.classList.add('fa-stop');
+              voiceIndicator.classList.add('active');
+              voiceStatus.textContent = 'Listening... Speak now';
+
+              recognition.start();
+              console.log('Voice recognition started');
+              showNotification('🎤 Listening... Please speak clearly', 'success');
+            }
+
+            recognition.onresult = function(event) {
+              let finalTranscript = '';
+              let interimTranscript = '';
+
+              for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                  finalTranscript += transcript;
+                } else {
+                  interimTranscript += transcript;
+                }
+              }
+
+              // Update input field with interim results for real-time feedback
+              if (interimTranscript) {
+                inputField.value = inputField.value + interimTranscript;
+                voiceStatus.textContent = 'Processing: "' + interimTranscript + '"';
+              }
+
+              if (finalTranscript) {
+                // Clean up the transcript and format it
+                const cleanedTranscript = finalTranscript.toLowerCase()
+                  .replace(/[.,!?;]/g, ',')
+                  .replace(/\s+/g, ' ')
+                  .trim();
+
+                // If there's existing text, append with comma
+                if (inputField.value && !inputField.value.endsWith(',')) {
+                  inputField.value += ', ';
+                }
+                inputField.value = cleanedTranscript;
+
+                // Auto-format symptoms
+                formatSymptoms();
+                voiceStatus.textContent = 'Captured: "' + finalTranscript + '"';
+              }
+            };
+
+            recognition.onerror = function(event) {
+              console.error('Speech recognition error:', event.error);
+              let errorMessage = '❌ ';
+
+              switch(event.error) {
+                case 'no-speech':
+                  errorMessage += 'No speech detected. Please try again.';
+                  break;
+                case 'audio-capture':
+                  errorMessage += 'No microphone found. Please check your microphone.';
+                  break;
+                case 'not-allowed':
+                  errorMessage += 'Microphone access denied. Please allow microphone access.';
+                  break;
+                case 'network':
+                  errorMessage += 'Network error. Please check your connection.';
+                  break;
+                default:
+                  errorMessage += 'Error occurred: ' + event.error;
+              }
+
+              showNotification(errorMessage, 'error');
+              resetRecordingState();
+            };
+
+            recognition.onend = function() {
+              console.log('Voice recognition ended');
+              resetRecordingState();
+
+              if (inputField.value) {
+                showNotification('✅ Voice input captured successfully!', 'success');
+              }
+            };
+
+            function resetRecordingState() {
+              isRecording = false;
+              button.classList.remove('recording');
+              buttonText.textContent = 'Start Voice Input';
+              buttonIcon.classList.remove('fa-stop');
+              buttonIcon.classList.add('fa-microphone');
+              voiceIndicator.classList.remove('active');
+            }
+
+            function formatSymptoms() {
+              // Auto-format symptoms to be comma-separated and clean
+              let symptoms = inputField.value.toLowerCase()
+                .split(/[,;.]+/)
+                .map(s => s.trim())
+                .filter(s => s.length > 0)
+                .join(', ');
+
+              inputField.value = symptoms;
+            }
+          });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+          const alertDiv = document.createElement('div');
+          alertDiv.className = `alert alert-${type === 'error' ? 'danger' : 'success'} alert-dismissible fade show`;
+          alertDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; max-width: 350px; animation: slideIn 0.3s ease;';
+          alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          `;
+
+          document.body.appendChild(alertDiv);
+
+          // Auto dismiss after 5 seconds
+          setTimeout(() => {
+            alertDiv.classList.remove('show');
+            setTimeout(() => alertDiv.remove(), 150);
+          }, 5000);
+        }
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+          // Ctrl/Cmd + M to toggle microphone
+          if ((event.ctrlKey || event.metaKey) && event.key === 'm') {
+            event.preventDefault();
+            button.click();
+          }
+        });
+
+        // Auto-complete common symptoms
+        const commonSymptoms = [
+          'headache', 'fever', 'cough', 'fatigue', 'nausea', 'vomiting',
+          'dizziness', 'chest pain', 'shortness of breath', 'abdominal pain',
+          'back pain', 'joint pain', 'muscle pain', 'sore throat', 'runny nose',
+          'congestion', 'diarrhea', 'constipation', 'skin rash', 'itching'
+        ];
+
+        // Create datalist for autocomplete
+        const datalist = document.createElement('datalist');
+        datalist.id = 'symptomsList';
+        commonSymptoms.forEach(symptom => {
+          const option = document.createElement('option');
+          option.value = symptom;
+          datalist.appendChild(option);
+        });
+        document.body.appendChild(datalist);
+        inputField.setAttribute('list', 'symptomsList');
+
+        // Add input validation
+        inputField.addEventListener('input', function() {
+          // Remove any numbers or special characters except comma and space
+          this.value = this.value.replace(/[^a-zA-Z,\s]/g, '');
+        });
+
+        // Form submission validation
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+          const symptoms = inputField.value.trim();
+
+          if (!symptoms || symptoms.length < 3) {
+            event.preventDefault();
+            showNotification('⚠️ Please enter at least one symptom', 'error');
+            inputField.focus();
+            return false;
+          }
+
+          // Show loading state
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalText = submitButton.innerHTML;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Analyzing...';
+          submitButton.disabled = true;
+        });
+
+        // Add animation to results when they appear
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+              const results = document.querySelectorAll('.result-btn');
+              results.forEach((btn, index) => {
+                btn.style.opacity = '0';
+                btn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                  btn.style.transition = 'all 0.5s ease';
+                  btn.style.opacity = '1';
+                  btn.style.transform = 'translateY(0)';
+                }, index * 100);
+              });
+            }
+          });
+        });
+
+        const resultsSection = document.querySelector('.results-section');
+        if (resultsSection) {
+          observer.observe(resultsSection, { childList: true, subtree: true });
+        }
+
+        // Add smooth scroll to results
+        if (window.location.href.includes('predicted_disease')) {
+          setTimeout(() => {
+            const resultsSection = document.querySelector('.results-section');
+            if (resultsSection) {
+              resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 500);
+        }
+      });
+
+      // Add CSS animation for notifications
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
