@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI Health Care Center - Your Personal Health Assistant</title>
+    <title>CureGenix-AI </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -518,7 +518,7 @@
             <img class="myimg" src="{{ url_for('static', filename='image.png') }}" alt="Health Center Logo">
           </div>
           <i class="fas fa-heartbeat me-2"></i>
-          AI Health Center
+          CureGenix AI
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -541,7 +541,7 @@
     <div class="container-fluid">
       <h1 class="hero-title">
         <i class="fas fa-robot me-3"></i>
-        AI Health Assistant
+        Redefining Healthcare with Intelligence
       </h1>
       <p class="hero-subtitle">
         <i class="fas fa-stethoscope me-2"></i>
@@ -556,7 +556,7 @@
           <div class="form-group">
             <label for="symptoms" class="form-label">
               <i class="fas fa-comment-medical"></i>
-              Tell us about your symptoms
+              Tell AI about your symptoms
             </label>
             <input type="text" class="form-control" id="symptoms" name="symptoms"
                    placeholder="e.g., headache, fever, nausea, fatigue, cough..." required>
@@ -601,11 +601,11 @@
           </button>
           <button class="result-btn btn-description" data-bs-toggle="modal" data-bs-target="#descriptionModal">
             <i class="fas fa-info-circle"></i>
-            <span>Detailed Description</span>
+            <span>Description</span>
           </button>
           <button class="result-btn btn-precautions" data-bs-toggle="modal" data-bs-target="#precautionModal">
             <i class="fas fa-shield-alt"></i>
-            <span>Safety Precautions</span>
+            <span>Precautions</span>
           </button>
           <button class="result-btn btn-medications" data-bs-toggle="modal" data-bs-target="#medicationsModal">
             <i class="fas fa-pills"></i>
@@ -678,7 +678,7 @@
           <div class="modal-header">
             <h5 class="modal-title" id="precautionModalLabel">
               <i class="fas fa-shield-alt"></i>
-              Important Safety Precautions
+              Important Safety Measures
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -693,7 +693,7 @@
                 {% endfor %}
               </ul>
             {% else %}
-              <p class="text-center text-muted">No specific precautions available</p>
+              <p class="text-center text-muted">No specific precautions available at the moment</p>
             {% endif %}
           </div>
         </div>
